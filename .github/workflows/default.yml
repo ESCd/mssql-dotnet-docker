@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  publish:
+  sdk:
     permissions:
       contents: read
       packages: write
@@ -17,7 +17,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        dotnet_version: [9.0, 8.0]
+        dotnet_version: ["9.0", "8.0"]
         sql_version: [2025-latest, 2022-latest]
 
     steps:
@@ -36,9 +36,9 @@ jobs:
 
       - name: extract metadata
         id: meta
-        uses: docker/metadata-action@v3
+        uses: docker/metadata-action@v4
         with:
-          images: ghcr.io/${{ github.repository }}
+          images: ghcr.io/escd/mssql-dotnet-sdk
           tags: |
             type=ref,event=branch
             type=ref,event=pr
@@ -57,4 +57,4 @@ jobs:
             SQL_VERSION=${{ matrix.sql_version }}
           tags: |
             ${{ steps.meta.outputs.tags }}
-            ghcr.io/${{ github.repository }}:${{ matrix.dotnet_version }}-${{ matrix.sql_version }}
+            ghcr.io/escd/mssql-dotnet-sdk:${{ matrix.dotnet_version }}-${{ matrix.sql_version }}
