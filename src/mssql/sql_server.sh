@@ -25,7 +25,12 @@ start_sql_server() {
     printf '%s\n' "$SQL_SERVER_PID"
 }
 
+wait_sql_server_exit() {
+    wait "$SQL_SERVER_PID" || true
+}
+
 stop_sql_server() {
     /opt/mssql-tools18/bin/sqlcmd -C -S "${SQL_SERVER_HOST},${SQL_SERVER_PORT}" -U "${SQL_SERVER_USER}" -P "${MSSQL_SA_PASSWORD}" -Q "SHUTDOWN WITH NOWAIT" || true
-    wait "$SQL_SERVER_PID" || true
+    
+    wait_sql_server_exit
 }
