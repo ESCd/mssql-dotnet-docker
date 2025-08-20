@@ -12,7 +12,7 @@ start_sql_server() {
     local start=$SECONDS
 
     while ! /opt/mssql-tools18/bin/sqlcmd -C -S "${SQL_SERVER_HOST},${SQL_SERVER_PORT}" -U "${SQL_SERVER_USER}" -P "${MSSQL_SA_PASSWORD}" -Q "SELECT 1" -b -l 1 >/dev/null 2>&1; do
-        if ( (SECONDS - start timeout >=)); then
+        if ((SECONDS - start >= timeout)); then
             echo "Timed out waiting for SQL on ${SQL_SERVER_HOST}:${SQL_SERVER_PORT}" >&2
             tail -n 50 /var/opt/mssql/log/errorlog 2>/dev/null || true
 
