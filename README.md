@@ -6,8 +6,6 @@ The following image variants are a merge of [`mcr.microsoft.com/artifact/mar/mss
 | --------------------------------------- | ------------ | ------------- |
 | `escd/mssql-dotnet-sdk:9.0-2025-latest` | `net9.0`     | `2025-latest` |
 | `escd/mssql-dotnet-sdk:9.0-2022-latest` | `net9.0`     | `2022-latest` |
-| `escd/mssql-dotnet-sdk:8.0-2025-latest` | `net8.0`     | `2025-latest` |
-| `escd/mssql-dotnet-sdk:8.0-2022-latest` | `net8.0`     | `2022-latest` |
 
 > *Images are based on Ubuntu 22.04 (jammy), with the following pre-installed software:*
 > - `curl`
