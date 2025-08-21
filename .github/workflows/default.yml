@@ -23,8 +23,6 @@ jobs:
     steps:
       - name: checkout
         uses: actions/checkout@v5
-        with:
-          sparse-checkout: src/mssql/*
 
       - name: login ghcr
         uses: docker/login-action@v3
@@ -88,8 +86,6 @@ jobs:
     steps:
       - name: checkout
         uses: actions/checkout@v5
-        with:
-          sparse-checkout: src/wasm/*
 
       - name: login ghcr
         uses: docker/login-action@v3
