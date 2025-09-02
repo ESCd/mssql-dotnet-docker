@@ -125,7 +125,7 @@ jobs:
           tags: ghcr.io/escd/dotnet-wasm-sdk:${{ matrix.dotnet_version }}
 
       - name: publish attestation
-        uses: actions/attest-build-provenance@v2
+        uses: actions/attest-build-provenance@v3
         id: attest
         if: ${{ !github.event.repository.private }}
         with:
