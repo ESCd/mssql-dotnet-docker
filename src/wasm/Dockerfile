@@ -4,7 +4,7 @@ FROM mcr.microsoft.com/dotnet/sdk:${DOTNET_VERSION} AS sdk
 
 RUN apt-get update && \
     apt-get install -y curl && \
-    curl -fsSL https://deb.nodesource.com/setup_24.x | sudo -E bash -
+    curl -fsSL https://deb.nodesource.com/setup_24.x | sh -
 
 RUN apt-get update && \
     apt-get install -y --no-install-recommends git nodejs npm python3 python3-pip wget && \
