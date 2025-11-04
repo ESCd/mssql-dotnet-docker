@@ -8,5 +8,6 @@ RUN apt-get update && \
     apt-get clean && rm -rf /var/lib/apt/lists/*
 
 COPY --from=node-x /usr/local/ /usr/local/
+RUN npm install -g npm
 
 RUN dotnet workload install wasm-tools && dotnet nuget locals all --clear
