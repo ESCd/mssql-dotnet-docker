@@ -81,7 +81,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        dotnet_version: ["8.0", "9.0", "10.0"]
+        dotnet_version: ["8.0", "9.0", "10.0", "10.0-aot", "10.0-noble-aot", "10.0-noble-aot-amd64"]
 
     steps:
       - name: checkout
