@@ -12,6 +12,8 @@ ENV ACCEPT_EULA=Y
 ENV DOTNET_GENERATE_ASPNET_CERTIFICATE=false
 ENV DOTNET_NOLOGO=true
 ENV DOTNET_USE_POLLING_FILE_WATCHER=true
+ENV DOTNET_RUNNING_IN_CONTAINER=true
+ENV DOTNET_RUNNING_IN_CONTAINERS=true
 ENV MSSQL_PID=Express
 ENV NUGET_XMLDOC_MODE=skip
 
@@ -29,7 +31,7 @@ RUN ln -sf /usr/share/powershell/pwsh /usr/bin/pwsh && export PATH="/usr/share/p
 RUN ln -sf /usr/share/dotnet/dotnet /usr/bin/dotnet && export PATH="/usr/share/dotnet:$PATH";
 
 COPY --from=sdk /dotnet-tools.json /dotnet-tools.json
-RUN dotnet tool restore && dotnet nuget locals all --clear
+RUN dotnet tool restore
 
 COPY ["./src/mssql/sql_server.sh", "/sql_server.sh"]
 

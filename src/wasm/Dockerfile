@@ -3,6 +3,9 @@ ARG DOTNET_VERSION=10.0
 FROM node:24-bookworm-slim AS node-x
 FROM mcr.microsoft.com/dotnet/sdk:${DOTNET_VERSION} AS sdk
 
+ENV DOTNET_RUNNING_IN_CONTAINER=true
+ENV DOTNET_RUNNING_IN_CONTAINERS=true
+
 RUN apt-get update && \
     apt-get install -y --no-install-recommends ca-certificates curl git npm python3 python3-pip wget && \
     apt-get autoremove --purge && apt-get clean && rm -rf /var/lib/apt/lists/* && rm -rf /tmp/* && rm -rf /var/tmp/*
@@ -10,4 +13,4 @@ RUN apt-get update && \
 COPY --from=node-x /usr/local/ /usr/local/
 RUN npm install -g npm
 
-RUN dotnet workload install wasm-tools && dotnet nuget locals all --clear
+RUN dotnet workload install wasm-tools
